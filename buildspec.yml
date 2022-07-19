@@ -28,7 +28,7 @@ phases:
 #      - cfn-lint --ignore-checks W3011 --append-rules $CODEBUILD_SRC_DIR_LintRules --template ${TEMPLATE_PATH}
 
       - echo "Copying Cirrus Authenticators template from S3"
-      - aws s3 cp s3://lly-templates/cirrus/cloudformation/cirr-aws-authenticators/latest.yaml codebuild-api-authenticators/authenticators.yaml
+      - aws s3 cp s3://lly-templates/aws-authenticators/cloudformation/latest.yaml codebuild-api-authenticators/authenticators.yaml
 
       - echo "Completed pre_build - $(date)"
   build:
