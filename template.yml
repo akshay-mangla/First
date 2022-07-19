@@ -257,7 +257,7 @@ Outputs:
   CloudFrontId:
     Value: !Ref WebsiteCloudFront
     Export:
-      Name: CloudFrontIdDemo
+      Name: CloudFrontIdDemo11
   WebBucket:
     Description: Location to put SPA static files
     Value: !Join
