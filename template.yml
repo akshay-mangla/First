@@ -19,15 +19,15 @@ Parameters:
             - PriceClass_100
             - PriceClass_200
             - PriceClass_All
-#  CloudFrontRequireAuth:
-#    Description: >
-#      Add a Lambda@Edge authorizer to the CloudFront distribution for authenticated access. 
-#      If this is set to true, you must create your stack in us-east-1 (N. Virginia).
-#    Type: String
-#    Default: "false"
-#    AllowedValues:
-#      - "true"
-#      - "false"
+  CloudFrontRequireAuth:
+    Description: >
+      Add a Lambda@Edge authorizer to the CloudFront distribution for authenticated access. 
+      If this is set to true, you must create your stack in us-east-1 (N. Virginia).
+    Type: String
+    Default: "false"
+    AllowedValues:
+      - "true"
+      - "false"
   EmptyWebBucketOnDelete:
     Description: Empty the web bucket on stack deletion, which allows the bucket to be deleted.
     Type: String
@@ -73,8 +73,8 @@ Parameters:
     Description:  Topic Name
     Default: notification
       
-#Conditions:
-#  CloudFrontRequireAuth: !Equals [!Ref CloudFrontRequireAuth, "true"]
+Conditions:
+  CloudFrontRequireAuth: !Equals [!Ref CloudFrontRequireAuth, "true"]
   
 Mappings:
   EdatPipelineV2:
@@ -162,25 +162,25 @@ Resources:
         DataClassification: !Ref DataClassification
         Hipaa: !Ref Hipaa
         
-#  CirrusAuthenticators:
-#    Condition: CloudFrontRequireAuth
-#    Type: AWS::Serverless::Application
-#    Properties:
-#      Location: codebuild-api-authenticators/authenticators.yaml
-#      Parameters:
-#        LogLevel: WARN
-#        ApiAuthExpectedAudience: ""
-#        ApiAuthExpectedIssuer: ""
-#        EdgeAuthCloudFrontDistributionId: !Ref CloudfrontDistributionID
-#        PermissionsBoundary: "TRUE"
-#        CostCenter: !Ref CostCenter
-#        CostCenterApprover: !Ref CostCenterApprover
-#        SystemOwner: !Ref SystemOwner
-#        SystemCustodian: !Ref SystemCustodian
-#        PrimaryItContact: !Ref PrimaryItContact
-#        Level1BusinessArea: !Ref Level1BusinessArea
-#        DataClassification: !Ref DataClassification
-#        Hipaa: !Ref Hipaa
+  CirrusAuthenticators:
+    Condition: CloudFrontRequireAuth
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: codebuild-api-authenticators/authenticators.yaml
+      Parameters:
+        LogLevel: WARN
+        ApiAuthExpectedAudience: ""
+        ApiAuthExpectedIssuer: ""
+        EdgeAuthCloudFrontDistributionId: !Ref CloudfrontDistributionID
+        PermissionsBoundary: "TRUE"
+        CostCenter: !Ref CostCenter
+        CostCenterApprover: !Ref CostCenterApprover
+        SystemOwner: !Ref SystemOwner
+        SystemCustodian: !Ref SystemCustodian
+        PrimaryItContact: !Ref PrimaryItContact
+        Level1BusinessArea: !Ref Level1BusinessArea
+        DataClassification: !Ref DataClassification
+        Hipaa: !Ref Hipaa
   MySNSTopic: 
    Type: AWS::SNS::Topic
    Properties: 
