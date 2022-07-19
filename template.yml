@@ -181,73 +181,73 @@ Resources:
         Level1BusinessArea: !Ref Level1BusinessArea
         DataClassification: !Ref DataClassification
         Hipaa: !Ref Hipaa
-  MySNSTopic: 
-   Type: AWS::SNS::Topic
-   Properties: 
-     Subscription: 
-       - Endpoint: "arn:aws:lambda:us-east-1:073395114856:function:notification"
-         Protocol: "lambda"
-     TopicName: !Ref TopicName 
-  mysnspolicy:
-   Type: AWS::SNS::TopicPolicy
-   Properties:
-    PolicyDocument:
-      Id: MyTopicPolicy
-      Version: '2012-10-17'
-      Statement:
-      - Sid: CodeNotification_publish
-        Effect: Allow
-        Principal:
-          Service: 
-            - codestar-notifications.amazonaws.com
-        Action: sns:Publish
-        Resource: !Ref MySNSTopic
-    Topics:
-    - !Ref MySNSTopic
+#  MySNSTopic: 
+#   Type: AWS::SNS::Topic
+#   Properties: 
+#     Subscription: 
+#       - Endpoint: "arn:aws:lambda:us-east-1:073395114856:function:notification"
+#         Protocol: "lambda"
+#     TopicName: !Ref TopicName 
+#  mysnspolicy:
+#   Type: AWS::SNS::TopicPolicy
+#   Properties:
+#    PolicyDocument:
+#      Id: MyTopicPolicy
+#      Version: '2012-10-17'
+#      Statement:
+#      - Sid: CodeNotification_publish
+#        Effect: Allow
+#        Principal:
+#          Service: 
+#            - codestar-notifications.amazonaws.com
+#        Action: sns:Publish
+#        Resource: !Ref MySNSTopic
+#    Topics:
+#    - !Ref MySNSTopic
     
-  MyEventNotification:
-   Type: AWS::CodeStarNotifications::NotificationRule
-   Properties:
-      Name: 'CodePipeline-Notification-Rule'
-      DetailType: FULL
-      Resource: 'arn:aws:codepipeline:us-east-1:073395114856:new-stack'
-      EventTypeIds: 
-          - codepipeline-pipeline-pipeline-execution-failed
-      Targets: 
-          - TargetType: SNS 
-            TargetAddress: !Ref MySNSTopic
+#  MyEventNotification:
+#   Type: AWS::CodeStarNotifications::NotificationRule
+#   Properties:
+#      Name: 'CodePipeline-Notification-Rule'
+#      DetailType: FULL
+#      Resource: 'arn:aws:codepipeline:us-east-1:073395114856:new-stack'
+#      EventTypeIds: 
+#          - codepipeline-pipeline-pipeline-execution-failed
+#      Targets: 
+#          - TargetType: SNS 
+#            TargetAddress: !Ref MySNSTopic
             
-  AlertingRole:
-   Type: AWS::IAM::Role
-   Properties:
-      RoleName: Alert_Role
-      Description: "Alerting Role"
-      PermissionsBoundary: !Sub 'arn:aws:iam::${AWS::AccountId}:policy/LZ-IAM-Boundary'
-      AssumeRolePolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-          - Effect: Allow
-            Principal:
-              Service:
-                - "lambda.amazonaws.com"
-                - "cloudformation.amazonaws.com"
-                - "codepipeline.amazonaws.com"
-            Action: 
-              - sts:AssumeRole
-      Policies:
-        - PolicyName: alert
-          PolicyDocument:
-            Version: "2012-10-17"
-            Statement:
-              - Action:
-                  - "codepipeline:*"
-                  - "codebuild:*"
-                  - "codestar-notifications:*"
-                  - "sns:*"
-                  - "cloudformation:*"
-                Effect: Allow
-                Resource:
-                  - "*"   
+#  AlertingRole:
+#   Type: AWS::IAM::Role
+#   Properties:
+#      RoleName: Alert_Role
+#      Description: "Alerting Role1"
+#      PermissionsBoundary: !Sub 'arn:aws:iam::${AWS::AccountId}:policy/LZ-IAM-Boundary'
+#      AssumeRolePolicyDocument:
+#        Version: '2012-10-17'
+#        Statement:
+#          - Effect: Allow
+#            Principal:
+#              Service:
+#                - "lambda.amazonaws.com"
+#                - "cloudformation.amazonaws.com"
+#                - "codepipeline.amazonaws.com"
+#            Action: 
+#              - sts:AssumeRole
+#      Policies:
+#        - PolicyName: alert
+#          PolicyDocument:
+#            Version: "2012-10-17"
+#            Statement:
+#              - Action:
+#                  - "codepipeline:*"
+#                  - "codebuild:*"
+#                  - "codestar-notifications:*"
+#                  - "sns:*"
+#                  - "cloudformation:*"
+#                Effect: Allow
+#                Resource:
+#                  - "*"   
  
 Outputs:
   CloudFrontUrl:
