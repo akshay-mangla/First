@@ -93,7 +93,7 @@ Mappings:
 
 Resources:
   WebsiteCloudFront:
-    Type: AWS::CloudFront::Distribution
+  Type: AWS::CloudFront::Distribution
     Properties:
       DistributionConfig:
         DefaultCacheBehavior:
