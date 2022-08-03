@@ -43,7 +43,7 @@ Parameters:
   SystemCustodian:
     Type: String
     Default: "YOUR_SYSTEM_CUSTODIAN"
-  PrimaryItContact:
+ PrimaryItContact:
     Type: String
     Default: "YOUR_PRIMARY_IT_CONTACT"
   Level1BusinessArea:
