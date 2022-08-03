@@ -34,7 +34,7 @@ Parameters:
   CostCenter:
     Type: String
     Default: "YOUR_COST_CENTER"
-  CostCenterApprover:
+ CostCenterApprover:
     Type: String
     Default: "YOUR_COST_CENTER_APPROVER"
   SystemOwner:
