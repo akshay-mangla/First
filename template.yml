@@ -201,7 +201,9 @@ Resources:
         Principal:
           Service: 
             - codestar-notifications.amazonaws.com
-        Action: sns:Publish
+        Action: 
+            - sns:Publish
+            - kms:*
         Resource: !Ref MySNSTopic
     Topics:
     - !Ref MySNSTopic
