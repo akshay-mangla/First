@@ -203,7 +203,6 @@ Resources:
             - codestar-notifications.amazonaws.com
         Action: 
             - sns:Publish
-            - kms:*
         Resource: !Ref MySNSTopic
     Topics:
     - !Ref MySNSTopic
