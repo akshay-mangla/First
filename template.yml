@@ -10,7 +10,7 @@ Parameters:
     Default: PUBLIC
     AllowedPattern: "[a-zA-Z0-9-]+"
     ConstraintDescription: "must contain only alphanumerics and hyphens and cannot be empty"
-  DeployEnvironment:
+ DeployEnvironment:
     Type: String
   CloudFrontPriceClass:
         Type: String
