@@ -222,7 +222,7 @@ Resources:
   AlertingRole:
    Type: AWS::IAM::Role
    Properties:
-      RoleName: Alert_Role
+      RoleName: Alert_Role1
       Description: "Alerting Role1"
       PermissionsBoundary: !Sub 'arn:aws:iam::${AWS::AccountId}:policy/LZ-IAM-Boundary'
       AssumeRolePolicyDocument:
