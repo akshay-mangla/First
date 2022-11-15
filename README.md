@@ -1,7 +1,7 @@
 # PROJECT_NAME
 
 
-## Getting Started
+## Getting  Started
 
 If you haven't already you should create a GitHub repository for this project via [ServiceNow](https://lilly.service-now.com), search for "GitHub Services". You can clone the repository that ServiceNow creates
 and copy your project files into that new directory. Once you have copied your files over it is heavily recommended to create an initial commit with the files exactly as they were
