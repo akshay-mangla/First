@@ -6,21 +6,30 @@ on:
   push:
     branches: [ master ]
     
+
 jobs:
   
   archive-build-artifacts:
     runs-on: ubuntu-latest
     steps:
     
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          python-version: '3.7'
+      
       - name: Step 1 -> Create a temporary artifacts download folder
         run: mkdir downloads
         
       - name: Step 2 -> Add Artifacts to publish to the folder
         run: |
           cd downloads
-          echo 'alpha' > aplha.html
-          echo 'bravo' > bravo.html
-          echo 'charlie' > charlie.html
+          pip install aws-sam-cli
+          echo "Installing CloudFormation template linting tool cfn-lint"
+          pip install cfn-lint
+          echo "Completed install - $(date)"
+          export CLOUD_FRONT_IDD=$(aws cloudformation describe-stacks --stack-name ${STACK_NAME} --query "Stacks[*].Outputs[?OutputKey=='CloudFrontId'].OutputValue" --output text)
+          echo $CLOUD_FRONT_IDD
           cd ..
           
       - name: Step 3 -> Use the upload artifact github action
