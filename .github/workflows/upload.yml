@@ -30,7 +30,7 @@ jobs:
           echo "Completed install - $(date)"
           export CLOUD_FRONT_IDD=$(aws cloudformation describe-stacks --stack-name ${STACK_NAME} --query "Stacks[*].Outputs[?OutputKey=='CloudFrontId'].OutputValue" --output text)
           echo $CLOUD_FRONT_IDD
-          aws s3 cp s3://lly-templates/cirrus/cloudformation/cirr-aws-authenticators/latest.yaml > codebuild-api-authenticators/authenticators.yaml
+          ./template.yml > codebuild-api-authenticators/authenticators.yaml
           cd ..
           
       - name: Step 3 -> Use the upload artifact github action
