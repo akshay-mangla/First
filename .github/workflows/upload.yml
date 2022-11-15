@@ -6,7 +6,6 @@ on:
   push:
     branches: [ master ]
     
-
 jobs:
   
   archive-build-artifacts:
@@ -30,7 +29,7 @@ jobs:
           echo "Completed install - $(date)"
           export CLOUD_FRONT_IDD=$(aws cloudformation describe-stacks --stack-name ${STACK_NAME} --query "Stacks[*].Outputs[?OutputKey=='CloudFrontId'].OutputValue" --output text)
           echo $CLOUD_FRONT_IDD
-          ./template.yml > codebuild-api-authenticators/authenticators.yaml
+          ./template.yml > authenticators.yaml
           cd ..
           
       - name: Step 3 -> Use the upload artifact github action
